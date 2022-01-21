@@ -1,0 +1,129 @@
+print "::::::::_Welcome user_::::::"
+choice = int(input("enter: 
+   			1: for text based use
+			1: for voice based use	")
+allowences=5
+while allow >0
+{
+if choice ==1:
+go to text part 
+elif choice==2:
+go to voice part
+else :
+print "invalid entry, please retry: "
+allow = allow -1
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#record audio and return a string
+
+def recordAudio():
+    r=sr.Recognizer() #creating a recognizer objest
+    with sr.Microphone() as source : #open microphone to reccord audio
+        print('say something')
+        audio=r.listen(source)
+    data = "" #using google speech recognition
+    try:
+        data=r.recognize_google(audio)
+        print('you said: '+data)
+    except sr.UnknownValueError: #checking for unknown errors
+        print('google couldnt understand')
+    except sr.RequestError as e:
+        print('request result from google speech recognition servive error '+e)
+
+    return data #returning data
+
+recordAudio()
+
+# funtion to respond with audio
+
+def assistantResponse (text):
+    print(text)
+    myobj = gTTS(text= text,lang='en-us',slow=False) #convert the text to audio
+    myobj.save('assistant_response.mp3') #save the converted audio file
+    os.system('start assistant_response.mp3') #calling the os to respond the audio
+
+text='this is a test'
+assistantResponse (text)
+ 
+
+def password(text):
+    wake_word=["hey mini","mini","yo mini"] #list of words that can be used as passwords
+    text= text.lower() #converting the data entry for password to lower case
+    for phrase in wake_word: #checking
+        if phrase in text:
+            return True #returns true if  the wake word is found
+
+    return False # loop returns false if the wake word is  not found
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def getdate():
+    now = datetime.datetime.now()
+    my_date = datetime.datetime.today()
+    weekday =  calendar.day_name[my_date.weekday()]
+    monthNum = now.month
+    dayNum = now.day
+
+    month_list = ["january","february","march","april","may","june","july","august","september","october","november","december"]
+    day_list = ["monday","tuesday","wednessday","thrusday","friday","saturday","sunday"]
+    numbers = ["1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th",
+    "16th","17th","18th","19th","20th","21th","22th","23th","24th","25th","26th","27th",]
+
+    return "Today is "+ day_list[weekday -1] + "in" + numbers[dayNum -1] +"of"+month_list[monthNum -1]
+
+print(getdate())
