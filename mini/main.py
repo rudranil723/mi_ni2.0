@@ -22,12 +22,14 @@ def password(text): #funtion to check password/wake word
     for phrase in wake_word:
         if phrase == text:
             print("hellow user!!! :)")
-            return True #return true if the password entered by the user is correct
+            tc= tc+1 #return true if the password entered by the user is correct
     print("you have entered a wrong password, mini won't work BYE.....")
-    return False # the program will not work of the passowrd is wrong
+    tc= tc+0 # the program will not work of the passowrd is wrong
 
-if password(text=True):
+if tc==1:
     print("wokering")
+else:
+    print("working")
 
 def recordaudio(): #function to record audio from the user
     r= sr.Recognizer()
@@ -48,6 +50,7 @@ def recordaudio(): #function to record audio from the user
 
 
 # this is the main part 
+
 allowences=3 #the user has three chance to enter the correct choice 
 print(" ")
 print(":::::_WELLCOME USER_:::::")
@@ -58,6 +61,7 @@ print("Enter: 1: for text command")
 print("  or   2: for voice command")
 print(" ")
 while allowences>0:
+    
     choice = input("enter choice: ")
     if choice=="1":
         print("you have selcted to procced with text commands")
